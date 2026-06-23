@@ -132,11 +132,43 @@
       margin-bottom: .5rem;
     }
     .hero p {
-      font-size: 15px;
-      color: var(--text-muted);
-      line-height: 1.6;
-      max-width: 420px;
-    }
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+
+.hero-btn {
+  height: 46px;
+  padding: 0 24px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all .15s;
+}
+
+.hero-btn-primary {
+  background: var(--blue);
+  color: white;
+}
+
+.hero-btn-primary:hover {
+  background: #1249a0;
+}
+
+.hero-btn-secondary {
+  background: white;
+  color: var(--blue);
+  border: 1px solid var(--blue);
+}
+
+.hero-btn-secondary:hover {
+  background: var(--blue-light);
+}
     .hero-img {
       width: 160px;
       opacity: .12;
@@ -495,11 +527,25 @@
   <!-- Hero -->
   <div class="hero">
     <div>
-      <div class="hero-badge">
-        <i class="ti ti-home-check"></i> Calculadora de compra
-      </div>
-      <h1>Gastos de compra<br>de una propiedad</h1>
-      <p>Conocé todos los costos asociados a la compra de un inmueble antes de tomar tu decisión.</p>
+<div class="hero-badge">
+  <i class="ti ti-calculator"></i> Herramienta profesional
+</div>
+
+<h1>CALCULADORA INMOBILIARIA</h1>
+
+<p>
+  Calculá los gastos a la hora de comprar o vender una propiedad.
+</p>
+
+<div class="hero-actions">
+  <button class="hero-btn hero-btn-primary" onclick="mostrarCompra()">
+    COMPRAR
+  </button>
+
+  <button class="hero-btn hero-btn-secondary" onclick="mostrarVenta()">
+    VENDER
+  </button>
+</div>
     </div>
     <!-- Placeholder SVG house illustration -->
     <svg class="hero-img" viewBox="0 0 160 140" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -885,7 +931,15 @@
       </div>
     `;
   }
+function mostrarCompra() {
+  document.querySelector('.main-card').scrollIntoView({
+    behavior: 'smooth'
+  });
+}
 
+function mostrarVenta() {
+  alert('Calculadora de venta - Próximamente disponible');
+}
   /* ── Init ── */
   actualizarExencion();
 </script>
