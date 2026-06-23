@@ -165,7 +165,7 @@
     }
 
     .hero-img {
-      width: 320px;
+      width: 380px;
       opacity: .95;
     }
     @media (max-width: 640px) {
@@ -672,6 +672,7 @@
 
       <div class="result-side">
         <div class="side-title"><i class="ti ti-currency-dollar"></i> Resultado estimado</div>
+        <div class="info-pill" style="margin-bottom:1.25rem"><i class="ti ti-alert-circle"></i>Los valores son estimativos y pueden variar según cada operación y escribanía interviniente.</div>
         <div id="venta-result">
           <div class="result-empty">
             <i class="ti ti-home-dollar"></i>
@@ -979,8 +980,8 @@ function calcularVenta(){
 
  document.getElementById('venta-result').innerHTML=`
  <div class="line"><div class="line-l"><div class="line-icon"><i class="ti ti-building-estate"></i></div><div><div class="line-name">Impuesto de sellos*</div><div class="line-sub">${nota}</div></div></div><div class="line-r"><span class="line-amount">USD ${Math.round(sellos).toLocaleString('es-AR')}</span><div class="tip-wrap"><button class="tip-btn"><i class="ti ti-info-circle"></i></button><div class="tip-box">${tip}</div></div></div></div>
- <div class="line"><div class="line-l"><div class="line-icon"><i class="ti ti-users"></i></div><div><div class="line-name">Honorarios inmobiliarios</div><div class="line-sub">3% del valor de venta</div></div></div><div class="line-r"><span class="line-amount">USD ${Math.round(comision).toLocaleString('es-AR')}</span></div></div>
- <div class="line"><div class="line-l"><div class="line-icon"><i class="ti ti-file-text"></i></div><div><div class="line-name">Gastos preescriturarios</div><div class="line-sub">2% del valor de venta</div></div></div><div class="line-r"><span class="line-amount">USD ${Math.round(pre).toLocaleString('es-AR')}</span></div></div>
+ <div class="line"><div class="line-l"><div class="line-icon"><i class="ti ti-users"></i></div><div><div class="line-name">Honorarios inmobiliarios</div><div class="line-sub">3% del valor de venta</div></div></div><div class="line-r"><span class="line-amount">USD ${Math.round(comision).toLocaleString('es-AR')}</span><div class="tip-wrap"><button class="tip-btn"><i class="ti ti-info-circle"></i></button><div class="tip-box">Honorarios correspondientes a la intervención de la inmobiliaria. Se estima un 3% del valor de venta.</div></div></div></div>
+ <div class="line"><div class="line-l"><div class="line-icon"><i class="ti ti-file-text"></i></div><div><div class="line-name">Gastos preescriturarios</div><div class="line-sub">2% del valor de venta</div></div></div><div class="line-r"><span class="line-amount">USD ${Math.round(pre).toLocaleString('es-AR')}</span><div class="tip-wrap"><button class="tip-btn"><i class="ti ti-info-circle"></i></button><div class="tip-box">Incluye Estudio de Títulos, Certificados, Diligenciamientos, entre otros.</div></div></div></div>
  <hr class="sep"/>
  <div class="total-row"><span class="total-label">TOTAL DE GASTOS</span><span class="total-num">USD ${Math.round(gastos).toLocaleString('es-AR')}</span></div>
  <div class="grand"><div><div class="grand-label">NETO ESTIMADO A RECIBIR</div><div class="grand-sub">Valor de venta - gastos estimados</div></div><div class="grand-num">USD ${Math.round(neto).toLocaleString('es-AR')}</div></div>`;
