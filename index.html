@@ -687,17 +687,19 @@
   <!-- CTA cards -->
   
 <div class="below">
-  <div class="cta-card">
+  
+<div class="cta-card" id="ayuda-card">
     <div class="cta-card-icon"><i class="ti ti-message-circle"></i></div>
-    <h3>¿Necesitás ayuda con tu operación?</h3>
-    <p>¡Nosotros te ayudamos!</p>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;">
+    <h3 id="ayuda-titulo">¿Necesitás ayuda con tu operación?</h3>
+    <p id="ayuda-texto">¡Nosotros te ayudamos!</p>
+    <div id="ayuda-botones" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;">
       <a href="https://wa.me/5491161737552?text=Hola%20Matias.%20Utilice%20la%20Calculadora%20de%20Compra%20y%20quisiera%20recibir%20asesoramiento%20para%20analizar%20una%20operacion." target="_blank" class="cta-link">🏠 Quiero Comprar</a>
       <a href="https://wa.me/5491161737552?text=Hola%20Matias.%20Utilice%20la%20Calculadora%20de%20Venta%20y%20quisiera%20recibir%20asesoramiento%20para%20analizar%20la%20venta%20de%20una%20propiedad." target="_blank" class="cta-link">💰 Quiero Vender</a>
     </div>
   </div>
 
   <div class="cta-card" id="guia-card">
+
     <div class="cta-card-icon"><i class="ti ti-file-description"></i></div>
     <h3 id="guia-titulo">Guía del Comprador</h3>
     <p id="guia-texto">Conocé el paso a paso de una operación inmobiliaria, los gastos habituales y los errores más frecuentes al comprar.</p>
@@ -756,6 +758,23 @@
 <script>
 
 
+
+function actualizarCTA(tipo){
+ const t=document.getElementById('ayuda-titulo');
+ const b=document.getElementById('ayuda-botones');
+
+ if(tipo==='compra'){
+  t.textContent='¿Necesitás ayuda con tu compra?';
+  b.innerHTML='<a href="https://wa.me/5491161737552?text=Hola%20Matias.%20Utilice%20la%20Calculadora%20de%20Compra%20y%20quisiera%20recibir%20asesoramiento%20para%20analizar%20una%20operacion." target="_blank" class="cta-link">🏠 Quiero Comprar</a>';
+ } else if(tipo==='venta'){
+  t.textContent='¿Necesitás ayuda con tu venta?';
+  b.innerHTML='<a href="https://wa.me/5491161737552?text=Hola%20Matias.%20Utilice%20la%20Calculadora%20de%20Venta%20y%20quisiera%20recibir%20asesoramiento%20para%20analizar%20la%20venta%20de%20una%20propiedad." target="_blank" class="cta-link">💰 Quiero Vender</a>';
+ } else {
+  t.textContent='¿Necesitás ayuda con tu operación?';
+  b.innerHTML='<a href="https://wa.me/5491161737552?text=Hola%20Matias.%20Utilice%20la%20Calculadora%20de%20Compra%20y%20quisiera%20recibir%20asesoramiento%20para%20analizar%20una%20operacion." target="_blank" class="cta-link">🏠 Quiero Comprar</a><a href="https://wa.me/5491161737552?text=Hola%20Matias.%20Utilice%20la%20Calculadora%20de%20Venta%20y%20quisiera%20recibir%20asesoramiento%20para%20analizar%20la%20venta%20de%20una%20propiedad." target="_blank" class="cta-link">💰 Quiero Vender</a>';
+ }
+}
+
 function actualizarGuia(tipo){
  const titulo=document.getElementById('guia-titulo');
  const texto=document.getElementById('guia-texto');
@@ -775,6 +794,7 @@ function mostrarCompra(){
   document.getElementById('compra-section').style.display='block';
   document.getElementById('venta-section').style.display='none';
   actualizarGuia('compra');
+  actualizarCTA('compra');
   document.getElementById('compra-section').scrollIntoView({behavior:'smooth'});
 }
 
@@ -782,6 +802,7 @@ function mostrarVenta(){
   document.getElementById('venta-section').style.display='block';
   document.getElementById('compra-section').style.display='none';
   actualizarGuia('venta');
+  actualizarCTA('venta');
   document.getElementById('venta-section').scrollIntoView({behavior:'smooth'});
 }
 
@@ -999,12 +1020,12 @@ function calcularVenta(){
  const neto=valor-gastos;
 
  document.getElementById('venta-result').innerHTML=`
- <div class="line"><div class="line-l"><div class="line-icon"><i class="ti ti-building-estate"></i></div><div><div class="line-name">Impuesto de sellos*</div><div class="line-sub">${nota}</div></div></div><div class="line-r"><span class="line-amount">USD ${Math.round(sellos).toLocaleString('es-AR')}</span><div class="tip-wrap"><button class="tip-btn"><i class="ti ti-info-circle"></i></button><div class="tip-box">${tip}</div></div></div></div>
- <div class="line"><div class="line-l"><div class="line-icon"><i class="ti ti-users"></i></div><div><div class="line-name">Honorarios inmobiliarios</div><div class="line-sub">3% del valor de venta</div></div></div><div class="line-r"><span class="line-amount">USD ${Math.round(comision).toLocaleString('es-AR')}</span><div class="tip-wrap"><button class="tip-btn"><i class="ti ti-info-circle"></i></button><div class="tip-box">Honorarios correspondientes a la intervención de la inmobiliaria. Se estima un 3% del valor de venta.</div></div></div></div>
- <div class="line"><div class="line-l"><div class="line-icon"><i class="ti ti-file-text"></i></div><div><div class="line-name">Gastos preescriturarios</div><div class="line-sub">2% del valor de venta</div></div></div><div class="line-r"><span class="line-amount">USD ${Math.round(pre).toLocaleString('es-AR')}</span><div class="tip-wrap"><button class="tip-btn"><i class="ti ti-info-circle"></i></button><div class="tip-box">Incluye Estudio de Títulos, Certificados, Diligenciamientos, entre otros.</div></div></div></div>
+ <div class="line"><div class="line-l"><div class="line-icon"><i class="ti ti-building-estate"></i></div><div><div class="line-name">Impuesto de sellos*</div><div class="line-sub">${nota}</div></div></div><div class="line-r"><span class="line-amount">${fmtUSD(sellos)}</span><div class="tip-wrap"><button class="tip-btn"><i class="ti ti-info-circle"></i></button><div class="tip-box">${tip}</div></div></div></div>
+ <div class="line"><div class="line-l"><div class="line-icon"><i class="ti ti-users"></i></div><div><div class="line-name">Honorarios inmobiliarios</div><div class="line-sub">3% del valor de venta</div></div></div><div class="line-r"><span class="line-amount">${fmtUSD(comision)}</span><div class="tip-wrap"><button class="tip-btn"><i class="ti ti-info-circle"></i></button><div class="tip-box">Honorarios correspondientes a la intervención de la inmobiliaria. Se estima un 3% del valor de venta.</div></div></div></div>
+ <div class="line"><div class="line-l"><div class="line-icon"><i class="ti ti-file-text"></i></div><div><div class="line-name">Gastos preescriturarios</div><div class="line-sub">2% del valor de venta</div></div></div><div class="line-r"><span class="line-amount">${fmtUSD(pre)}</span><div class="tip-wrap"><button class="tip-btn"><i class="ti ti-info-circle"></i></button><div class="tip-box">Incluye Estudio de Títulos, Certificados, Diligenciamientos, entre otros.</div></div></div></div>
  <hr class="sep"/>
- <div class="total-row"><span class="total-label">TOTAL DE GASTOS</span><span class="total-num">USD ${Math.round(gastos).toLocaleString('es-AR')}</span></div>
- <div class="grand"><div><div class="grand-label">NETO ESTIMADO A RECIBIR</div><div class="grand-sub">Valor de venta - gastos estimados</div></div><div class="grand-num">USD ${Math.round(neto).toLocaleString('es-AR')}</div></div>`;
+ <div class="total-row"><span class="total-label">TOTAL DE GASTOS</span><span class="total-num">${fmtUSD(gastos)}</span></div>
+ <div class="grand"><div><div class="grand-label">NETO ESTIMADO A RECIBIR</div><div class="grand-sub">Valor de venta - gastos estimados</div></div><div class="grand-num">${fmtUSD(neto)}</div></div>`;
 }
 
 /* ── Init ── */
