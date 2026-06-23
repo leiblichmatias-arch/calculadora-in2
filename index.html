@@ -685,28 +685,30 @@
 
 
   <!-- CTA cards -->
-  <div class="below">
-    <div class="cta-card">
-      <div class="cta-card-icon"><i class="ti ti-file-description"></i></div>
-      <h3>Guía del Comprador</h3>
-      <p>Conocé el paso a paso de una operación inmobiliaria, los gastos habituales y los errores más frecuentes al comprar.</p>
-      <a href="https://drive.google.com/drive/folders/1MR1OyjK6j6co7eUpYFF5u6T9P5RiZ1CR?usp=sharing"
-         target="_blank" class="cta-link">
-        <i class="ti ti-download"></i> Descargar guía
-      </a>
-    </div>
-    <div class="cta-card">
-      <div class="cta-card-icon"><i class="ti ti-message-circle"></i></div>
-      <h3>¿Necesitás ayuda con tu caso?</h3>
-      <p>Podemos ayudarte a analizar una operación, estimar costos y acompañarte durante todo el proceso de compra.</p>
-      <a href="https://wa.me/5491161737552?text=Hola%20Matias.%20Utilice%20la%20Calculadora%20de%20Compra%20y%20quisiera%20hacer%20una%20consulta."
-         target="_blank" class="cta-link">
-        <i class="ti ti-brand-whatsapp"></i> Hablar con un asesor
-      </a>
+  
+<div class="below">
+  <div class="cta-card">
+    <div class="cta-card-icon"><i class="ti ti-message-circle"></i></div>
+    <h3>¿Necesitás ayuda con tu operación?</h3>
+    <p>¡Nosotros te ayudamos!</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;">
+      <a href="https://wa.me/5491161737552?text=Hola%20Matias.%20Utilice%20la%20Calculadora%20de%20Compra%20y%20quisiera%20recibir%20asesoramiento%20para%20analizar%20una%20operacion." target="_blank" class="cta-link">🏠 Quiero Comprar</a>
+      <a href="https://wa.me/5491161737552?text=Hola%20Matias.%20Utilice%20la%20Calculadora%20de%20Venta%20y%20quisiera%20recibir%20asesoramiento%20para%20analizar%20la%20venta%20de%20una%20propiedad." target="_blank" class="cta-link">💰 Quiero Vender</a>
     </div>
   </div>
 
-  <!-- Features -->
+  <div class="cta-card" id="guia-card">
+    <div class="cta-card-icon"><i class="ti ti-file-description"></i></div>
+    <h3 id="guia-titulo">Guía del Comprador</h3>
+    <p id="guia-texto">Conocé el paso a paso de una operación inmobiliaria, los gastos habituales y los errores más frecuentes al comprar.</p>
+    <a id="guia-link" href="https://drive.google.com/drive/folders/1MR1OyjK6j6co7eUpYFF5u6T9P5RiZ1CR?usp=sharing" target="_blank" class="cta-link">
+      <i class="ti ti-download"></i> Descargar guía
+    </a>
+  </div>
+</div>
+
+<!-- Features -->
+
   <div class="features">
     <div class="feat">
       <i class="ti ti-shield-check"></i>
@@ -753,15 +755,33 @@
 
 <script>
 
+
+function actualizarGuia(tipo){
+ const titulo=document.getElementById('guia-titulo');
+ const texto=document.getElementById('guia-texto');
+ const link=document.getElementById('guia-link');
+ if(tipo==='venta'){
+   titulo.textContent='Guía del Vendedor';
+   texto.textContent='Conocé el proceso de venta, los gastos habituales y recomendaciones para vender mejor tu propiedad.';
+   link.href='https://drive.google.com/drive/folders/1DYPBVyH8lfU9-IVbrGHSU9lL-UJ0C8b1?usp=sharing';
+ }else{
+   titulo.textContent='Guía del Comprador';
+   texto.textContent='Conocé el paso a paso de una operación inmobiliaria, los gastos habituales y los errores más frecuentes al comprar.';
+   link.href='https://drive.google.com/drive/folders/1MR1OyjK6j6co7eUpYFF5u6T9P5RiZ1CR?usp=sharing';
+ }
+}
+
 function mostrarCompra(){
   document.getElementById('compra-section').style.display='block';
   document.getElementById('venta-section').style.display='none';
+  actualizarGuia('compra');
   document.getElementById('compra-section').scrollIntoView({behavior:'smooth'});
 }
 
 function mostrarVenta(){
   document.getElementById('venta-section').style.display='block';
   document.getElementById('compra-section').style.display='none';
+  actualizarGuia('venta');
   document.getElementById('venta-section').scrollIntoView({behavior:'smooth'});
 }
 
